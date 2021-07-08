@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import Button from "../../components/UI/Button/Button"
+import Input from "../../components/UI/Input/Input"
 import classes from "./Auth.module.css"
 
 class Auth extends Component {
@@ -20,8 +21,14 @@ class Auth extends Component {
 
                     <form className={classes.AuthForm}>
 
-                        <input type="text" />
-                        <input type="text" />
+                        <Input 
+                        label="Email" 
+                        />
+
+                        <Input 
+                        label="Password" 
+                        errorMessage="TEST"
+                        />
 
                         <Button
                             type="success"
