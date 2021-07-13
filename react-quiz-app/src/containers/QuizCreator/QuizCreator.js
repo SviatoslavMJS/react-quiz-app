@@ -4,14 +4,14 @@ import classes from "./QuizCreator.module.css"
 import { createControl } from "../../form/formFramework"
 import Input from "../../components/UI/Input/Input"
 import Auxiliary from "../../hoc/Auxiliary/Auxiliary"
+import Select from "../../components/UI/Select/Select"
 
 function createOptionControl(number) {
     return createControl({
         label: `Вариант ${number}`,
         errorMessage: "Значение не может быть пустым!",
         id: number
-    }, { required: true }
-    )
+    }, { required: true })
 }
 
 function createFormControls() {
@@ -30,6 +30,7 @@ function createFormControls() {
 class QuizCreator extends Component {
 
     state = {
+        rightAnswerId: 1,
         quiz: [],
         formControls: createFormControls()
     }
@@ -50,12 +51,19 @@ class QuizCreator extends Component {
 
     }
 
+    selectChangeHandler = event => {
+        console.log(event.target.value)
+        this.setState({
+            rightAnswerId: +event.target.value
+        })
+    }
+
     renderControls() {
         return Object.keys(this.state.formControls).map((controlName, index) => {
             const control = this.state.formControls[controlName]
 
             return (
-                <Auxiliary key={control.name + index}>
+                <Auxiliary key={controlName + index}>
                     <Input
                         label={control.label}
                         value={control.value}
@@ -73,6 +81,19 @@ class QuizCreator extends Component {
     }
 
     render() {
+        
+        const select = <Select
+            label="Выберите правильный ответ"
+            value={this.state.rightAnswerId}
+            onChange={this.selectChangeHandler}
+            options={[
+                { text: 1, value: "1" },
+                { text: 2, value: "2" },
+                { text: 3, value: "3" },
+                { text: 4, value: "4" },
+            ]}
+        />
+
         return (
             <div className={classes.QuizCreator}>
                 <div>
@@ -82,7 +103,7 @@ class QuizCreator extends Component {
 
                         {this.renderControls()}
 
-                        <select></select>
+                        {select}
 
                         <Button
                             type="primary"
