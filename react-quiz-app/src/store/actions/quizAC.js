@@ -143,3 +143,4 @@ export function quizAnswerClick(answerId) {
         return state.activeQuestion + 1 === state.quiz.length
     }
 }
+

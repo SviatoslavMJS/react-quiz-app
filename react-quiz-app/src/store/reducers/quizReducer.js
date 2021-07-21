@@ -1,5 +1,5 @@
 import { FETCH_QUIZES_ERROR, FETCH_QUIZES_START, FETCH_QUIZES_SUCCESS, FETCH_QUIZ_SUCCESS, QUIZ_FINISH, QUIZ_NEXT_QUESTION, QUIZ_SET_STATE, RETRY_QUIZ } from "../actions/actionTypes"
-import { quizSetState } from "../actions/quizAC"
+
 
 
 const initialState = {
